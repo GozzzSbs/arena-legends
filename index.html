@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ARENA LEGENDS</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header>
+    <div class="logo">✦ ARENA <span>LEGENDS</span></div>
+    <div class="profile">
+        <span>🟢 EN LIGNE</span>
+        <span>💎 1250</span>
+    </div>
+</header>
+
+<main id="lobby">
+
+    <section class="hero">
+        <p>SAISON 01 — LES TERRES FRACTURÉES</p>
+        <h1>DEVENEZ LA DERNIÈRE LÉGENDE</h1>
+        <p>8 combattants. Une arène. Un seul survivant.</p>
+    </section>
+
+    <section class="main-layout">
+
+        <div class="characters">
+            <h2>CHOISIS TON CHAMPION</h2>
+            <div id="character-list"></div>
+            <div id="character-info"></div>
+        </div>
+
+        <div class="mode">
+            <div class="mode-image">
+                <h2>LAST<br><span>LEGEND</span></h2>
+                <p>SOLO SHOWDOWN</p>
+            </div>
+
+            <h2>CHACUN POUR SOI</h2>
+            <p>
+                Affronte 7 adversaires dans une arène.
+                Élimine tes ennemis et deviens le dernier survivant.
+            </p>
+
+            <div class="stats">
+                <div><b>8</b><small>JOUEURS</small></div>
+                <div><b>1</b><small>VAINQUEUR</small></div>
+                <div><b>5:00</b><small>DURÉE MAX.</small></div>
+            </div>
+
+            <button id="play">⚔ JOUER</button>
+        </div>
+
+    </section>
+</main>
+
+<section id="game-screen" class="hidden">
+
+    <div class="game-header">
+        <button id="quit">← QUITTER</button>
+        <h2>LAST LEGEND</h2>
+        <div id="timer">05:00</div>
+    </div>
+
+    <div class="game-container">
+
+        <canvas id="game" width="1000" height="650"></canvas>
+
+        <div class="hud">
+            <div class="health">
+                <span id="player-name">ASTRA</span>
+                <div class="health-bar">
+                    <div id="health-fill"></div>
+                </div>
+                <small id="health-text">100 / 100 PV</small>
+            </div>
+
+            <div class="alive">
+                👥 <span id="alive">8</span> EN VIE
+            </div>
+        </div>
+
+        <div id="end-screen" class="hidden">
+            <h1 id="end-title">VICTOIRE !</h1>
+            <p id="end-description"></p>
+            <button id="restart">REJOUER</button>
+            <button id="return">RETOUR AU LOBBY</button>
+        </div>
+
+    </div>
+
+    <div class="mobile-controls">
+        <button data-key="up">▲</button>
+        <button data-key="left">◀</button>
+        <button data-key="down">▼</button>
+        <button data-key="right">▶</button>
+        <button id="mobile-attack">ATTAQUE</button>
+        <button id="mobile-dash">DASH</button>
+    </div>
+
+    <p class="instructions">
+        ZQSD / WASD : DÉPLACEMENT |
+        ESPACE : ATTAQUE |
+        MAJ : ESQUIVE
+    </p>
+
+</section>
+
+<script src="game.js"></script>
+
+</body>
+</html>
