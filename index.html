@@ -1,111 +1,213 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ARENA LEGENDS</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ARENA LEGENDS</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdn.jsdelivr.net/npm/phaser@3.80.1/dist/phaser.min.js"></script>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">✦ ARENA <span>LEGENDS</span></div>
-    <div class="profile">
-        <span>🟢 EN LIGNE</span>
-        <span>💎 1250</span>
+<header class="topbar">
+
+    <div class="logo">
+        ARENA <span>LEGENDS</span>
     </div>
+
+    <div class="currency">
+        🪙 1250
+        💎 250
+    </div>
+
 </header>
+
+<!-- LOBBY -->
 
 <main id="lobby">
 
-    <section class="hero">
-        <p>SAISON 01 — LES TERRES FRACTURÉES</p>
-        <h1>DEVENEZ LA DERNIÈRE LÉGENDE</h1>
-        <p>8 combattants. Une arène. Un seul survivant.</p>
-    </section>
+    <section class="hero-banner">
 
-    <section class="main-layout">
+        <div class="banner-content">
 
-        <div class="characters">
-            <h2>CHOISIS TON CHAMPION</h2>
-            <div id="character-list"></div>
-            <div id="character-info"></div>
-        </div>
+            <span class="season">SAISON 01 — THE LOST KINGDOM</span>
 
-        <div class="mode">
-            <div class="mode-image">
-                <h2>LAST<br><span>LEGEND</span></h2>
-                <p>SOLO SHOWDOWN</p>
-            </div>
+            <h1>DEVENEZ UNE<br> LÉGENDE.</h1>
 
-            <h2>CHACUN POUR SOI</h2>
             <p>
-                Affronte 7 adversaires dans une arène.
-                Élimine tes ennemis et deviens le dernier survivant.
+                Entrez dans l'arène. Combattez vos ennemis.
+                Devenez le dernier survivant.
             </p>
 
-            <div class="stats">
-                <div><b>8</b><small>JOUEURS</small></div>
-                <div><b>1</b><small>VAINQUEUR</small></div>
-                <div><b>5:00</b><small>DURÉE MAX.</small></div>
-            </div>
-
-            <button id="play">⚔ JOUER</button>
         </div>
 
     </section>
+
+    <section class="lobby-content">
+
+        <div class="selection-panel">
+
+            <div class="section-title">
+                <span>01 / HÉROS</span>
+                <h2>CHOISIS TON COMBATTANT</h2>
+            </div>
+
+            <div id="characters"></div>
+
+            <div class="character-details">
+
+                <div id="hero-preview"></div>
+
+                <div class="hero-description">
+
+                    <h2 id="hero-name">ASTRA</h2>
+
+                    <p id="hero-desc"></p>
+
+                    <div class="stat">
+                        <span>POINTS DE VIE</span>
+                        <div class="stat-bg">
+                            <div id="hp-stat"></div>
+                        </div>
+                    </div>
+
+                    <div class="stat">
+                        <span>DÉGÂTS</span>
+                        <div class="stat-bg">
+                            <div id="damage-stat"></div>
+                        </div>
+                    </div>
+
+                    <div class="stat">
+                        <span>VITESSE</span>
+                        <div class="stat-bg">
+                            <div id="speed-stat"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="mode-panel">
+
+            <span class="mode-tag">MODE DISPONIBLE</span>
+
+            <div class="mode-art">
+                <div class="mode-title">
+                    <span>LAST</span>
+                    <strong>LEGEND</strong>
+                </div>
+            </div>
+
+            <h2>SOLO SHOWDOWN</h2>
+
+            <p>
+                8 combattants entrent dans l'arène.
+                Un seul peut repartir victorieux.
+            </p>
+
+            <div class="mode-information">
+
+                <div>
+                    <strong>08</strong>
+                    <span>JOUEURS</span>
+                </div>
+
+                <div>
+                    <strong>01</strong>
+                    <span>VAINQUEUR</span>
+                </div>
+
+                <div>
+                    <strong>05</strong>
+                    <span>MINUTES</span>
+                </div>
+
+            </div>
+
+            <button id="play-button">
+                ⚔ ENTRER DANS L'ARÈNE
+            </button>
+
+        </div>
+
+    </section>
+
 </main>
+
+<!-- GAME -->
 
 <section id="game-screen" class="hidden">
 
-    <div class="game-header">
-        <button id="quit">← QUITTER</button>
-        <h2>LAST LEGEND</h2>
-        <div id="timer">05:00</div>
+    <div class="game-top">
+
+        <button id="exit-button">← QUITTER</button>
+
+        <div class="game-title">LAST LEGEND</div>
+
+        <div id="game-timer">05:00</div>
+
     </div>
 
-    <div class="game-container">
+    <div id="game-container">
 
-        <canvas id="game" width="1000" height="650"></canvas>
+        <div id="game"></div>
 
-        <div class="hud">
-            <div class="health">
-                <span id="player-name">ASTRA</span>
-                <div class="health-bar">
-                    <div id="health-fill"></div>
+        <div class="game-hud">
+
+            <div class="player-hud">
+
+                <div id="hud-name">ASTRA</div>
+
+                <div class="health-background">
+                    <div id="hud-health"></div>
                 </div>
-                <small id="health-text">100 / 100 PV</small>
+
+                <div id="hud-health-text">100 / 100</div>
+
             </div>
 
-            <div class="alive">
-                👥 <span id="alive">8</span> EN VIE
+            <div class="alive-hud">
+                👥 <span id="alive-count">8</span> SURVIVANTS
             </div>
+
         </div>
 
-        <div id="end-screen" class="hidden">
-            <h1 id="end-title">VICTOIRE !</h1>
-            <p id="end-description"></p>
-            <button id="restart">REJOUER</button>
-            <button id="return">RETOUR AU LOBBY</button>
+        <div id="game-result" class="hidden">
+
+            <div class="result-card">
+
+                <span id="result-icon">🏆</span>
+
+                <h1 id="result-title">VICTOIRE</h1>
+
+                <p id="result-description"></p>
+
+                <button id="again-button">REJOUER</button>
+
+                <button id="lobby-button">RETOUR AU LOBBY</button>
+
+            </div>
+
         </div>
 
     </div>
 
-    <div class="mobile-controls">
-        <button data-key="up">▲</button>
-        <button data-key="left">◀</button>
-        <button data-key="down">▼</button>
-        <button data-key="right">▶</button>
-        <button id="mobile-attack">ATTAQUE</button>
-        <button id="mobile-dash">DASH</button>
-    </div>
+    <div class="controls">
 
-    <p class="instructions">
-        ZQSD / WASD : DÉPLACEMENT |
-        ESPACE : ATTAQUE |
-        MAJ : ESQUIVE
-    </p>
+        <span>ZQSD / WASD : DÉPLACEMENT</span>
+        <span>ESPACE : ATTAQUE</span>
+        <span>SHIFT : ESQUIVE</span>
+
+    </div>
 
 </section>
 
